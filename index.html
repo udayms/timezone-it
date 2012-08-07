@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>TimeZoneMyMeeting</title>
+	<link rel="stylesheet" href="assets/css/style.css">
+	<script type="text/javascript" src="assets/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="assets/js/date.js"></script>
+	
+	<script type="text/javascript">
+
+	$(document).ready(function(){
+
+		/*$(form).submit(function(){*/
+		$("#add").click(function(){
+
+			d = new Date();
+		    utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+		    var city = $("#selectPlace").val();
+		  
+		    var offset1 = Math.floor((Math.random()*13)+1);
+		  
+		    var offset2 = offset1 + 2;
+		   	$("#selectPlace").val("");
+		    nd1 = new Date(utc + (3600000*offset1));
+		    nd2 = new Date(utc + (3600000*offset2));
+		    
+		    var randomColors = ["#406796", "#c0504d", "#31859c", "#ffc000", "#7030a0"];
+			function getRandomColor() {
+			   return randomColors[Math.floor(Math.random() * randomColors.length)];
+			}
+
+		    $(".added-timezone-blocks").prepend("<div class='added-timezone-block'><div style='background-color:" + getRandomColor() + "' class='city-name'>" + city + "</div>" + "<div class='time " + nd1.toString('tt') + "'>" + nd1.toString('hh:mm') + " to " + nd2.toString('hh:mm') + "</div></div>");
+
+		    return false;
+		})
+		
+	});
+		</script>
+</head>
+<body>
+	<div class="container">
+		<h1>TimezoneIt</h1>
+		<form>
+			<div class="city-input-field">
+				<input type="" class="date-input" id="selectPlace" autofocus required>
+			</div>
+			<div class="add-city-icon">
+				<input class="add-icon" type="submit" id="add" value="+" />
+			</div>
+		</form>
+		<div class="added-timezone-blocks">
+			
+		</div>
+	</div>
+</body>
+</html>

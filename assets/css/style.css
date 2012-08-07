@@ -1,0 +1,78 @@
+@font-face {
+  font-family: segoeui;
+  src: url(fonts/Segoeui/segoeui.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: segoeui;
+  src: url(fonts/Segoeui/seguisb.ttf);
+  font-weight: bold;
+  font-style: normal;
+}
+body {
+	margin:0;
+	padding:0px;
+	font-family: "segoeui";
+}
+.container {
+	margin: auto;
+	width: 80%;
+	border: 1px solid #ddd;
+}
+.city-input-field {
+	margin: 10px;
+}
+.add-city-icon {
+	
+	
+	/*margin-top: -10px;*/
+}
+.date-input {
+	margin: 10px;
+	width: 97%;
+	padding:14px 10px;
+	font-size: 20px; 
+}
+.add-icon {
+	padding: 12px 20px;
+	font-size: 20px;
+	position: absolute;
+	margin-left: 75%;
+	top: 90px;
+	right: 10%;
+	margin-right: 24px;	
+	margin-top: 10px;
+}
+.added-timezone-block {
+	margin:10px 20px;
+	/*background-color: #333;*/
+	color: #ffffff;
+}
+.city-name {
+	display: inline-block;
+	padding:10px 10px;
+	font-size: 30px;
+	width: 78%;
+	background-color: #ff8800;
+	margin-right: 10px;
+}
+.time {
+	/*float: right;*/
+	width: 18%;
+	text-align: center;
+	display: inline-block;
+	padding: 10px 10px;
+	font-size: 30px;
+	
+}
+.AM {
+	background-color: #efefef;
+	color: #444444;
+	border: 1px solid #333333;
+}
+.PM {
+	background-color: #333;
+	color: #ffffff;
+	border: 1px solid #333333;
+}

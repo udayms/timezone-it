@@ -1,4 +1,6 @@
 timezone-ninja
 ==============
 
-JavaScript based Timezone Scroller
+JavaScript based Timezone Scroller.
+
+Collaborators: Dev, Udai & Uday

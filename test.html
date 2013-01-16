@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="date.js"></script>
+		<script>
+			timezoneJS.timezone.zoneFileBasePath = '/timezone/tz';
+			timezoneJS.timezone.defaultZoneFile = ['asia', 'backward', 'northamerica', 'southamerica'];
+			timezoneJS.timezone.init({async: false});
+		</script>
+
+		<script type="text/javascript" src="fleegix.js"></script>
+		<script type="text/javascript" src="custom.js"></script>
+	</head>
+	<body>
+		<ul class="cities">
+			<li>Asia/Kolkata</li>
+			<li>America/New_York</li>
+		</ul>
+	</body>
+</html>

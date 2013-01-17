@@ -17,7 +17,7 @@ body {
 }
 .container {
 	margin: auto;
-	width: 80%;
+	width: 99%;
 	border: 1px solid #ddd;
 }
 .city-input-field {
@@ -30,17 +30,18 @@ body {
 }
 .date-input {
 	margin: 10px;
-	width: 97%;
+	width: 85%;
 	padding:14px 10px;
 	font-size: 20px; 
 }
 .add-icon {
+	float: right;
 	padding: 12px 20px;
 	font-size: 20px;
-	position: absolute;
+	/*position: absolute;
 	margin-left: 75%;
 	top: 90px;
-	right: 10%;
+	right: 10%;*/
 	margin-right: 24px;	
 	margin-top: 10px;
 }
@@ -75,4 +76,17 @@ body {
 	background-color: #333;
 	color: #ffffff;
 	border: 1px solid #333333;
+}
+.i-txt {
+	display: inline-block;
+}
+#starttime {
+	float: left;
+}
+#stoptime {
+	float: right;
+}
+.time-selector {
+	text-align: center;
+	vertical-align: middle;
 }

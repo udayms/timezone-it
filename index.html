@@ -4,8 +4,10 @@
 	<meta charset="UTF-8">
 	<title>TimeZoneMyMeeting</title>
 	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/mobiscroll-2.3.1.custom.min.css">
 	<script type="text/javascript" src="assets/js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="assets/js/date.js"></script>
+	<script type="text/javascript" src="assets/js/mobiscroll-2.3.1.custom.min.js"></script>
 	
 	<script type="text/javascript">
 
@@ -33,20 +35,36 @@
 		    $(".added-timezone-blocks").prepend("<div class='added-timezone-block'><div style='background-color:" + getRandomColor() + "' class='city-name'>" + city + "</div>" + "<div class='time " + nd1.toString('tt') + "'>" + nd1.toString('hh:mm') + " to " + nd2.toString('hh:mm') + "</div></div>");
 
 		    return false;
-		})
+		});
+		$(function(){
+		    $('#starttime').mobiscroll().time({
+		        theme: 'android-ics light',
+		        display: 'inline',
+		        mode: 'scroller'
+		    });
+		    $('#stoptime').mobiscroll().time({
+		        theme: 'android-ics light',
+		        display: 'inline',
+		        mode: 'scroller'
+		    });
+		});
 		
 	});
 		</script>
 </head>
 <body>
 	<div class="container">
-		<h1>TimezoneIt</h1>
+		<div class="time-selector">
+			<div name="starttime" id="starttime" class="i-txt"></div>
+			TO
+			<div name="stoptime" id="stoptime" class="i-txt"></div>
+		</div>
 		<form>
 			<div class="city-input-field">
-				<input type="" class="date-input" id="selectPlace" autofocus required>
+				<input type="" class="date-input" id="selectPlace" autofocus required><input class="add-icon" type="submit" id="add" value="+" />
 			</div>
 			<div class="add-city-icon">
-				<input class="add-icon" type="submit" id="add" value="+" />
+				
 			</div>
 		</form>
 		<div class="added-timezone-blocks">

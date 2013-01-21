@@ -1,17 +1,16 @@
 <html ng-app>
 	<head>
 		<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/dot-luv/jquery-ui.css" />
+		<link rel="stylesheet" href="assets/css/style.css">
 		<style>
 			#slider-range,#SlideMax{width:400px;}
 			#slider-range,#time, #SlideMax, table{margin:10px;display:block;}
 		</style>
 	</head>
 	<body ng-controller="tzController">
-		India Time:<br/>
 		<div id="slider-range"></div>
-		<input type="text" id="txtHomeTime" ng-model="text" value="{{setHomeTime()}}"><br/><br/>
-		<ul ng-repeat="city in cities">
-		<li>{{city.name}}: {{city.stime}} - {{city.etime}}</li>
+		<ul >
+		<li ng-repeat="city in cities" class="selected-{{city.home}}">{{city.name}}: {{city.stime}} - {{city.etime}}</li>
 		</ul>
 		
 	</body>

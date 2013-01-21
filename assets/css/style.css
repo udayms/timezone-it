@@ -90,3 +90,11 @@ body {
 	text-align: center;
 	vertical-align: middle;
 }
+
+.selected-true{
+	background-color: yellow;
+}
+
+.ui-slider .ui-slider-handle {
+	width: 10px;
+	}

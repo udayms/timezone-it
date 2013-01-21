@@ -1,27 +1,30 @@
 function tzController($scope) {
-	$scope.origTime = new timezoneJS.Date("Asia/Kolkata").getHours() + ":" + new timezoneJS.Date("Asia/Kolkata").getMinutes();
 	$scope.startTime = 00;
 	$scope.endTime = 00;
-	$scope.hometime = "50 : 50";
+	$scope.hometime = "0 : 0";
 
 	$scope.cities = [
-    	{name:'America/Los_Angeles', stime: "0:00", etime: "0:00"},
+    	{name:'Asia/Kolkata',stime: "0:00", etime: "0:00"},
+    	{name:'America/Los_Angeles', home: true, stime: "0:00", etime: "0:00"},
     	{name:'Pacific/Honolulu', stime: "0:00", etime: "0:00"},
     	{name:'Asia/Tokyo', stime: "0:00", etime: "0:00"},
-    	{name:'America/Los_Angeles', stime: "0:00", etime: "0:00"}
+    	{name:'America/New_York',  stime: "0:00", etime: "0:00"},
+    	{name:'America/Tijuana', stime: "0:00", etime: "0:00"}
     ];
 
-	$scope.setHomeTime = function() {
-		console.log($scope.hometime);
-		return ($scope.hometime);
-	};
-
-	$scope.initCityTimes = function(){
+	$scope.initUI = function(){
     	angular.forEach($scope.cities, function(mycity) {
-      		dt = new timezoneJS.Date("01/19/2013", mycity.name);
+      		dt = new timezoneJS.Date(mycity.name);
       		mycity.stime = dt.getHours() + ":" + dt.getMinutes();
-      		mycity.etime = $scope.addMinutes(dt.getTime(), 60);
-      		console.log(mycity.name + ": " + mycity.stime + " - " + mycity.etime);
+      		mycity.etime = $scope.addMinutes(dt.getTime(), 60, mycity.name);
+
+      		if(mycity.home){
+      			$("#slider-range").slider({
+					range: true, min: 0, max: 2879, values: [dt.getHours() * 60, dt.getHours() * 60 + 120], step:60, slide: $scope.slideTime, change: $scope.checkMax
+				});
+      		}
+
+      		console.log(mycity.name + ": " + mycity.stime + " - " + mycity.etime + "[" + dt.getTimezoneOffset() + "]");
     	});
 	};
 
@@ -38,8 +41,8 @@ function tzController($scope) {
 	};
 
 	//need to fix this logic. right now, its BS.
-	$scope.addMinutes = function(date, minutes) {
-    	var newt = new timezoneJS.Date(date + minutes * 60000);
+	$scope.addMinutes = function(date, minutes, city) {
+    	var newt = new timezoneJS.Date(date + minutes * 60000, city);
     	return newt.getHours() + ":" + newt.getMinutes();
 	}
 
@@ -52,9 +55,12 @@ function tzController($scope) {
 			hours0 = parseInt(sTime / 60 % 24, 10),
 			minutes1 = parseInt(eTime % 60, 10),
 			hours1 = parseInt(eTime / 60 % 24, 10);
+
+			$scope.startTime = $scope.getTime(hours0, minutes0);
+			$scope.endTime = $scope.getTime(hours1, minutes1);
+			$scope.hometime = $scope.startTime + ' - ' + $scope.endTime;
 			
-		$scope.startTime = $scope.getTime(hours0, minutes0);
-		$scope.endTime = $scope.getTime(hours1, minutes1);*/
+		*/
 		
 		
 		$scope.$apply(function() {
@@ -65,35 +71,36 @@ function tzController($scope) {
       				eh = parseInt(eTime / 60 % 24, 10);
       			
 
-      			dt = new timezoneJS.Date("01/19/2013", mycity.name);
+      			dt = new timezoneJS.Date(mycity.name);
+
       			mycity.stime = $scope.getTime(sh, sm);
       			mycity.etime = $scope.getTime(eh, em);
       			
     		});
-
-			$scope.hometime = $scope.startTime + ' - ' + $scope.endTime;
-        	$scope.setHomeTime();
 	    });
 	};
 
 	$scope.getTime = function(hours, minutes) {
-		var time = null;
-		minutes = minutes + "";
+		var time = null, minutes = minutes + "";
+
 		if (hours < 12) {
 			time = "AM";
-		}
-		else {
+		}else {
 			time = "PM";
 		}
+
 		if (hours == 0) {
 			hours = 12;
 		}
+
 		if (hours > 12) {
 			hours = hours - 12;
 		}
+
 		if (minutes.length == 1) {
 			minutes = "0" + minutes;
 		}
+		
 		return hours + ":" + minutes + " " + time;
 	};
 
@@ -123,11 +130,9 @@ function tzController($scope) {
 
 
 	$scope.init = function(){
-		$scope.initCityTimes();
+		$scope.initUI();
 
-		$("#slider-range").slider({
-			range: true, min: 0, max: 2879, values: [540, 1020], step:60, slide: $scope.slideTime, change: $scope.checkMax
-		});
+		
 	};
 
 	

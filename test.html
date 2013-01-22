@@ -4,17 +4,22 @@
 		<script type="text/javascript" src="assets/js/date.js"></script>
 		<script>
 			timezoneJS.timezone.zoneFileBasePath = 'assets/tz';
-			timezoneJS.timezone.defaultZoneFile = ['asia', 'backward', 'northamerica', 'southamerica'];
+			timezoneJS.timezone.defaultZoneFile = ['asia', 'backward', 'northamerica', 'southamerica', 'europe'];
 			timezoneJS.timezone.init({async: false});
 		</script>
 
 		<!-- <script type="text/javascript" src="assets/js/fleegix.js"></script> -->
-		<script type="text/javascript" src="assets/js/tzit.js"></script>
+		<script type="text/javascript" src="assets/js/custom.js"></script>
 	</head>
 	<body>
+		Hours<input type="text" id="hours" >
+		Minutes<input type="text" id="minutes">
 		<ul class="cities">
-			<li>Asia/Kolkata</li>
 			<li>America/New_York</li>
+			<li>Asia/Kolkata</li>
+			<li>America/Chicago</li>
+			<li>Europe/Berlin</li>
+			<li>America/Montreal</li>
 		</ul>
 	</body>
 </html>

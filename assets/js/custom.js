@@ -1,19 +1,25 @@
 function timeit() {
 
-	var hrs=parseInt($("#hours").val());
-	var mins=parseInt($("#minutes").val());
+	var shrs=parseInt($("#shours").val());
+	var smins=parseInt($("#sminutes").val());
 
-	if(hrs>24 || mins>60 ||hrs<0 || mins<0) {
+	var ehrs=parseInt($("#ehours").val());
+	var emins=parseInt($("#eminutes").val());
+
+	if(shrs>23 || smins>59 ||shrs<0 || smins<0 || ehrs>23 || emins>59 || ehrs<0 || emins<0 ||shrs>ehrs || smins> emins) {
 		console.log("Incorrect Time!");
 		return false;
 	}
 
-	var homecity=new timezoneJS.Date(2013,00,22, hrs,mins);
-	var currentcity;
+	var homecitystime=new timezoneJS.Date(2013,00,22, shrs, smins);
+	var homecityetime=new timezoneJS.Date(2013,00,22, ehrs, emins);
+	var currentcitystime;
+	var currentcityetime;
 	
 	$( ".cities li" ).each(function( index ) {
-		currentcity = new timezoneJS.Date( homecity, $(this).text());
-		console.log($(this).text()+" " +currentcity.getHours()+ ":" + currentcity.getMinutes());
+		currentcitystime = new timezoneJS.Date( homecitystime, $(this).text());
+		currentcityetime = new timezoneJS.Date( homecityetime, $(this).text());
+		console.log($(this).text()+" " +currentcitystime.getHours()+ ":" + currentcitystime.getMinutes() + " to "+ currentcityetime.getHours()+ ":" + currentcityetime.getMinutes());
 	});
 	console.log("-----");
 }
@@ -23,12 +29,14 @@ function timeit() {
 
 $(document).ready(function(){
 	var currentdate=new timezoneJS.Date();
-	$("#hours").attr("value", currentdate.getHours());
-	$("#minutes").attr("value", currentdate.getMinutes());
+	$("#shours").attr("value", currentdate.getHours());
+	$("#sminutes").attr("value", currentdate.getMinutes());
+	$("#ehours").attr("value", parseInt($('#shours').attr("value"))+2);
+	$("#eminutes").attr("value", $('#sminutes').attr("value"));
+
 	timeit();
 
 	$('input').keyup(function(){
-		
 		timeit();
 	})
 

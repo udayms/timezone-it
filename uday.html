@@ -1,0 +1,22 @@
+<html ng-app>
+	<head>
+		<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/dot-luv/jquery-ui.css" />
+		<link rel="stylesheet" href="assets/css/style.css">
+		<style>
+			#slider-range,#SlideMax{width:400px;}
+			#slider-range,#time, #SlideMax, table{margin:10px;display:block;}
+		</style>
+	</head>
+	<body ng-controller="tzController">
+		<div id="slider-range"></div>
+		<ul >
+		<li ng-repeat="city in cities" class="selected-{{city.home}}">{{city.name}}: {{city.stime}} - {{city.etime}}</li>
+		</ul>
+		
+	</body>
+		<script type="text/javascript" src="assets/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="assets/js/date.js"></script>
+		<script type="text/javascript" src="assets/js/tzit.js"></script>
+		<script type="text/javascript" src="assets/js/angular.min.js"></script>
+</html>

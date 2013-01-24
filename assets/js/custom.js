@@ -41,7 +41,23 @@ $(document).ready(function(){
 	timeit(date, month, year, homeoffset);
 
 	$('input').keyup(function(){
-		timeit(date, month, year, homeoffset);
-	})
 
+		timeit();
+	});
+
+	// Added for time-picker widget
+	$('#starttime').mobiscroll().time({
+        theme: 'android-ics',
+        display: 'inline',
+        timeWheels: 'HHii',
+        stepMinute: 5,
+        mode: 'scroller'
+    });
+    $('#stoptime').mobiscroll().time({
+        theme: 'android-ics',
+        display: 'inline',
+        timeWheels: 'HHii',
+        stepMinute: 5,
+        mode: 'scroller'
+    });
 });

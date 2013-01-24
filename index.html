@@ -1,99 +1,53 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
-	<!-- <meta charset="UTF-8"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>TimeZoneMyMeeting</title>
-	<link rel="stylesheet" href="assets/css/style.css">
+	<title>TimeZoneIt</title>
 	<link rel="stylesheet" href="assets/css/mobiscroll-2.3.1.custom.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">	
 	<script type="text/javascript" src="assets/js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="assets/js/date.js"></script>
+	<script type="text/javascript" src="assets/js/custom.js"></script>
 	<script type="text/javascript" src="assets/js/mobiscroll-2.3.1.custom.min.js"></script>
-	
-	<script type="text/javascript">
-
-	$(document).ready(function(){
-
-		/*$(form).submit(function(){*/
-		$("#add").click(function(){
-
-			d = new Date();
-		    utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-		    var city = $("#selectPlace").val();
-		  
-		    var offset1 = Math.floor((Math.random()*13)+1);
-		  
-		    var offset2 = offset1 + 2;
-		   	$("#selectPlace").val("");
-		    nd1 = new Date(utc + (3600000*offset1));
-		    nd2 = new Date(utc + (3600000*offset2));
-		    
-		    var randomColors = ["#406796", "#c0504d", "#31859c", "#ffc000", "#7030a0"];
-			function getRandomColor() {
-			   return randomColors[Math.floor(Math.random() * randomColors.length)];
-			}
-
-		    $(".added-timezone-blocks").prepend("<div class='added-timezone-block'><div style='background-color:" + getRandomColor() + "' class='city-name'>" + city + "</div>" + "<div class='time " + nd1.toString('tt') + "'>" + nd1.toString('hh:mm') + " to " + nd2.toString('hh:mm') + "</div></div>");
-
-		    return false;
-		});
-		$(function(){
-		    $('#starttime').mobiscroll().time({
-		        theme: 'android-ics',
-		        display: 'inline',
-		        timeWheels: 'HHii',
-		        stepMinute: 10,
-		        mode: 'scroller'
-		    });
-		    $('#stoptime').mobiscroll().time({
-		        theme: 'android-ics',
-		        display: 'inline',
-		        timeWheels: 'HHii',
-		        stepMinute: 15,
-		        mode: 'scroller'
-		    });
-		});
-		
-	});
-		</script>
 </head>
 <body>
 	<div class="container">
-		<div class='added-timezone-block'>
-			<div class='city-name'>Bangalore, India</div>
-			<!-- <div class='current-time'>Current Time</div> -->
+		<div class='added-homecity-block'>
+			<div class='city-name'>Bangalore <div class="pull-right">India</div></div>
 		</div>
 		<div class="time-selector">
 			<div name="starttime" id="starttime" class="i-txt"></div>
 			TO
 			<div name="stoptime" id="stoptime" class="i-txt"></div>
 		</div>
-		<!-- <form>
-			<div class="city-input-field">
-				<input type="" class="date-input" id="selectPlace" autofocus required><input class="add-icon" type="submit" id="add" value="+" />
+		<div class="clear added-timezone-blocks">
+			<div class="added-timezone-block clear">
+				<div class="city-name">Chicago<div class="pull-right time-block">06:46 a - 08:46 p</div><div class="clear"></div></div>
 			</div>
-			<div class="add-city-icon">
-				
+			<div class="added-timezone-block clear">
+				<div class="city-name">Singapore<div class="pull-right time-block">06:46 a - 08:46 p</div><div class="clear"></div></div>
 			</div>
-		</form> -->
-		<div class="clear">&nbsp;</div>
-		<div class="added-timezone-blocks">
-			<div class="added-timezone-block">
-				<div style="background-color:#31b6e7" class="city-name">Berlin, Europe<div class="pull-right">06:46 to 08:46</div></div>
-				<!-- <div class="time AM">11:46 to 01:46</div> -->
+			<div class="added-timezone-block clear">
+				<div class="city-name">Kualalampur<div class="pull-right time-block">06:46 a - 08:46 p</div><div class="clear"></div></div>
 			</div>
-			<div class="added-timezone-block">
-				<div style="background-color:#31b6e7" class="city-name">Berlin, Europe<div class="pull-right">06:46 to 08:46</div></div>
-				<!-- <div class="time PM">06:46 to 08:46</div> -->
+			<div class="added-timezone-block clear">
+				<div class="city-name">Delhi<div class="pull-right time-block">06:46 a - 08:46 p</div><div class="clear"></div></div>
 			</div>
-			<div class="added-timezone-block">
-				<div style="background-color:#31b6e7" class="city-name">Montreal, America<div class="pull-right">06:46 to 08:46</div></div>
-				<!-- <div class="time PM">05:46 to 07:46</div> -->
+			<div class="added-timezone-block clear">
+				<div class="city-name">Chicago<div class="pull-right time-block">06:46 a - 08:46 p</div><div class="clear"></div></div>
 			</div>
-			<div class="added-timezone-block">
-				<div style="background-color:#31b6e7" class="city-name">Montreal, America<div class="pull-right">06:46 to 08:46</div></div>
-				<!-- <div class="time AM">04:46 to 06:46</div> -->
+			<div class="added-timezone-block clear">
+				<div class="city-name">Singapore<div class="pull-right time-block">06:46 a - 08:46 p</div><div class="clear"></div></div>
 			</div>
+			<div class="added-timezone-block clear">
+				<div class="city-name">Kualalampur<div class="pull-right time-block">06:46 a - 08:46 p</div><div class="clear"></div></div>
+			</div>
+			<div class="added-timezone-block clear">
+				<div class="city-name">Delhi<div class="pull-right time-block">06:46 a - 08:46 p</div><div class="clear"></div></div>
+			</div>
+		</div>
+		<div class="footer-bar">
+			<div class="add-city-icon"><b>+</b> Add City</div>
 		</div>
 	</div>
 </body>

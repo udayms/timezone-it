@@ -1,12 +1,18 @@
 @font-face {
-  font-family: segoeui;
-  src: url(fonts/Segoeui/segoeui.ttf);
+  font-family: roboto-r;
+  src: url(fonts/Roboto-Regular.ttf);
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: segoeui;
-  src: url(fonts/Segoeui/seguisb.ttf);
+  font-family: roboto-l;
+  src: url(fonts/Roboto-Light.ttf);
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: roboto-c;
+  src: url(fonts/Roboto-Condensed.ttf);
   font-weight: bold;
   font-style: normal;
 }
@@ -15,46 +21,30 @@ body {
 	width: 100%;
 	margin:0;
 	padding:0px;
-	/*zoom:150%;*/
-	font-family: "segoeui";
+	font-family: "roboto-l";
 }
 .container {
-	/*margin: auto;*/
 	width: auto;
-	/*border: 1px solid #ddd;*/
 }
-.city-input-field {
-	margin: 10px;
+.added-homecity-block {
+	background-color:#31b6e7;
+	color: #ffffff;
+	margin: 5px 10px;
 }
-.add-city-icon {
-	
-	
-	/*margin-top: -10px;*/
-}
-.date-input {
-	margin: 10px;
-	width: 85%;
-	padding:14px 10px;
-	font-size: 20px; 
-}
-.add-icon {
-	float: right;
-	padding: 12px 20px;
-	font-size: 20px;
-	/*position: absolute;
-	margin-left: 75%;
-	top: 90px;
-	right: 10%;*/
-	margin-right: 24px;	
-	margin-top: 10px;
+.added-homecity-block .city-name {
+	font-family: "roboto-c";
+	background-color: #000000;
+	border-bottom: 1px solid #5d5d5d;
+	padding:6px 0px 10px 0px;
+	font-size: 150%;
 }
 .added-timezone-blocks {
 	width: auto;
 }
 .added-timezone-block {
 	margin:5px;
-	/*background-color: #333;*/
-	color: #ffffff;
+	background-color:#93e2da;
+	color: #000000;
 }
 .clear {
 	clear: both;
@@ -62,10 +52,8 @@ body {
 .city-name {
 	display: block;
 	padding:10px 10px;
-	font-size: 150%;
-	/*width: 99%;*/
-	background-color: #ff8800;
-	/*margin-right: 10px;*/
+	font-size: 120%;
+	background-color: #93e2da;
 }
 .current-time {
 	float: right;
@@ -73,13 +61,24 @@ body {
 	z-index: 1000;
 }
 .time {
-	/*float: right;*/
 	width: 240px;
 	text-align: center;
 	display: inline-block;
 	padding: 10px 10px;
 	font-size: 30px;
-	
+}
+.time-block {
+	font-family: "roboto-r";
+	word-spacing: -4px;
+}
+.footer-bar {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background: rgba(36,36,36,.7);
+	color: #ffffff;
+	padding: 10px;
 }
 .AM {
 	background-color: #efefef;
@@ -95,18 +94,15 @@ body {
 	display: inline-block;
 }
 #starttime {
-	/*margin-left: 1%;*/
 	float: left;
 }
 #stoptime {
-	/*margin-right: 1%;*/
 	float: right;
 }
 .time-selector {
 	text-align: center;
 	vertical-align: middle;
 }
-
 .android-ics .dw {
 	padding: 0;
 	color: #31b6e7;
@@ -116,16 +112,24 @@ body {
 .pull-right {
 	float: right;
 }
+.android-ics .dwhl {
+	padding: 1px 0px;
+}
 .dwwr {
 	min-width: 80px !important;
 	zoom: 1;
 	padding: 0 10px;
 	text-align: center;
 }
+.add-city-icon {
+	background-color: #404042;
+	padding: 3px 10px;
+	cursor: pointer;
+	display: inline-block;
+}
 .selected-true{
 	background-color: yellow;
 }
-
 .ui-slider .ui-slider-handle {
 	width: 10px;
-	}
+}

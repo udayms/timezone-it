@@ -38,6 +38,27 @@ $(document).ready(function(){
 
 	$('input').keyup(function(){
 		timeit();
-	})
+	});
 
+	// Added for time-picker widget
+	$('#starttime').mobiscroll().time({
+        theme: 'android-ics',
+        display: 'inline',
+        timeWheels: 'HHii',
+        stepMinute: 5,
+        mode: 'scroller'
+    });
+    $('#stoptime').mobiscroll().time({
+        theme: 'android-ics',
+        display: 'inline',
+        timeWheels: 'HHii',
+        stepMinute: 5,
+        mode: 'scroller'
+    });
+
+
+
+});
+$(function() {
+	
 });

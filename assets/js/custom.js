@@ -1,4 +1,4 @@
-function timeit() {
+function timeit(date, month, year, homeoffset) {
 
 	var shrs=parseInt($("#shours").val());
 	var smins=parseInt($("#sminutes").val());
@@ -11,8 +11,8 @@ function timeit() {
 		return false;
 	}
 
-	var homecitystime=new timezoneJS.Date(2013,00,22, shrs, smins);
-	var homecityetime=new timezoneJS.Date(2013,00,22, ehrs, emins);
+	var homecitystime=new timezoneJS.Date(year, month, date, shrs, smins);
+	var homecityetime=new timezoneJS.Date(year, month, date, ehrs, emins);
 	var currentcitystime;
 	var currentcityetime;
 	
@@ -21,7 +21,7 @@ function timeit() {
 		currentcityetime = new timezoneJS.Date( homecityetime, $(this).text());
 		console.log($(this).text()+" " +currentcitystime.getHours()+ ":" + currentcitystime.getMinutes() + " to "+ currentcityetime.getHours()+ ":" + currentcityetime.getMinutes());
 	});
-	console.log("-----");
+	console.log("----- Home offset: "+ homeoffset/60 +" hours-------");
 }
 
 
@@ -29,14 +29,19 @@ function timeit() {
 
 $(document).ready(function(){
 	var currentdate=new timezoneJS.Date();
+	var date=currentdate.getDay();
+	var month=currentdate.getMonth();
+	var year=currentdate.getYear();
+	var homeoffset=currentdate.getTimezoneOffset();
 	$("#shours").attr("value", currentdate.getHours());
 	$("#sminutes").attr("value", currentdate.getMinutes());
 	$("#ehours").attr("value", parseInt($('#shours').attr("value"))+2);
 	$("#eminutes").attr("value", $('#sminutes').attr("value"));
 
-	timeit();
+	timeit(date, month, year, homeoffset);
 
 	$('input').keyup(function(){
+
 		timeit();
 	});
 
@@ -55,10 +60,4 @@ $(document).ready(function(){
         stepMinute: 5,
         mode: 'scroller'
     });
-
-
-
-});
-$(function() {
-	
 });

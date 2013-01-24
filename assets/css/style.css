@@ -44,6 +44,21 @@ body {
 	padding:6px 0px 10px 0px;
 	font-size: 150%;
 }
+.country-label {
+	font-size: 70%;
+	margin-top: -5px;
+}
+.android-ics .dwwo {	
+	background: linear-gradient(#000000 0,rgba(40,40,40,0) 52%,rgba(40,40,40,0) 48%,#000000 100%) !important;
+	background: -webkit-gradient(linear,left bottom,left top,from(#000000),color-stop(0.52,rgba(40,40,40,0)),color-stop(0.48,rgba(40,40,40,0)),to(#000000)) !important;
+	background: -moz-linear-gradient(#000000 0,rgba(40,40,40,0) 52%,rgba(40,40,40,0) 48%,#000000 100%) !important;
+	background: -o-linear-gradient(#000000 0,rgba(40,40,40,0) 52%,rgba(40,40,40,0) 48%,#000000 100%) !important;
+}
+.gmt-label {
+	font-size: 50%;
+	font-family: "roboto-r";
+	margin-top: -10px;
+}
 .added-timezone-blocks {
 	margin-top: 250px;
 	width: auto;

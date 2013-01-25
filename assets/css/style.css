@@ -22,16 +22,17 @@ body {
 	margin:0;
 	padding:0px;
 	font-family: "roboto-l";
+	overflow: hidden;
 }
 .container {
 	width: auto;
 }
 .added-homecity-block {
 	display: block;
-	position: fixed;
+	/*position: fixed;
 	left: 0;
 	right: 0;
-	top: 0;
+	top: 0;*/
 	border-bottom: 1px solid #5d5d5d;
 	background-color:#31b6e7;
 	color: #ffffff;
@@ -60,7 +61,13 @@ body {
 	margin-top: -10px;
 }
 .added-timezone-blocks {
-	margin-top: 250px;
+	/*height: 100%;*/
+	overflow-y: scroll;
+	overflow-x:hidden;
+	height: auto;
+	/*position: absolute;
+
+	top: 250px;*/
 	width: auto;
 }
 .added-timezone-block {
@@ -124,11 +131,11 @@ body {
 .time-selector {
 	background-color: #000000;
 	display: block;
-	position: fixed;
-	/*margin-top: 60px;*/
+	/*position: fixed;
+	margin-top: 60px;
 	top: 55px;
 	left: 0;
-	right: 0;
+	right: 0;*/
 	text-align: center;
 	vertical-align: middle;
 }

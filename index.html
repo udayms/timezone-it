@@ -9,6 +9,8 @@
 	<script type="text/javascript" src="assets/js/date.js"></script>
 	<script type="text/javascript" src="assets/js/custom.js"></script>
 	<script type="text/javascript" src="assets/js/mobiscroll-2.3.1.custom.min.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.leanModal.min.js"></script>
+	
 </head>
 <body>
 	<div class="container">
@@ -47,8 +49,38 @@
 			</div>
 		</div>
 		<div class="footer-bar">
-			<div class="add-city-icon"><b>+</b> Add City</div>
+			<div  class="add-city-icon"><a id= "add-city" href="#overlay"><b>+</b> Add City</a></div>
 		</div>
+	</div>
+
+	<div id="overlay">
+	     <div class="modal-content">
+	         <div class="modal-title">Select cities to add:</div>
+	         <ul id="cities-to-add">
+	         	<li>Asia/Kolkata</li>
+         		<li>America/Chicago</li>
+     			<li>Asia/Karachi</li>
+ 				<li>Europe/Berlin</li>
+ 				<li>America/New_York</li>
+ 				<li>Asia/Kolkata</li>
+         		<li>America/Chicago</li>
+     			<li>Asia/Karachi</li>
+ 				<li>Europe/Berlin</li>
+ 				<li>America/New_York</li>
+ 				<li>Asia/Kolkata</li>
+         		<li>America/Chicago</li>
+     			<li>Asia/Karachi</li>
+ 				<li>Europe/Berlin</li>
+ 				<li>America/New_York</li>
+ 				<li>Asia/Kolkata</li>
+         		<li>America/Chicago</li>
+     			<li>Asia/Karachi</li>
+ 				<li>Europe/Berlin</li>
+ 				<li>America/New_York</li>
+	         </ul>
+	         <div class="modal-button">Done</div>
+	         <div class="modal-button pull-right">Cancel</div>
+	     </div>
 	</div>
 </body>
 </html>

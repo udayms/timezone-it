@@ -9,7 +9,10 @@ var Utils = {
 	},
 
 	getTimeString: function(hours, minutes){
-		var time = null, minutes = minutes + "";
+		var time = null;
+
+
+
 
 		if (hours < 12) {
 			time = "a";
@@ -25,17 +28,35 @@ var Utils = {
 			hours = hours - 12;
 		}
 
-		if (minutes.length == 1) {
-			minutes = "0" + minutes;
-		}
+		hours = hours + "";
+		minutes = minutes + "";
+
+		if(hours.length < 2) hours = "0" + hours;
+		if(minutes.length < 2) minutes = "0" + minutes;
 
 		return hours + ":" + minutes + " " + time;
 
 	},
 
+	getTimeFromString: function(tstring){
+		tstring = tstring.replace(/[^\d]/g, "");
+		var time = {};
+			time.hours = tstring.substring(0, 2);
+			time.minutes = tstring.substring(2, tstring.length);
+
+			// var re = /\w+\s/g;
+			// if((onlyLetters = /^[a-zA-Z]*$/.test(tstring)))
+
+		return  time;
+	},
+
 	getPlace: function(zone, city){
 
 		return zone + "/" + city;
+	},
+
+	prettyfyCityname: function(name){
+		return name.replace("_", " ");
 	}
 
 

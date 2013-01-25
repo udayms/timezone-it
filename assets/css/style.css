@@ -22,6 +22,7 @@ body {
 	margin:0;
 	padding:0px;
 	font-family: "roboto-l";
+	/*overflow: hidden;*/
 }
 .container {
 	width: auto;
@@ -32,7 +33,7 @@ body {
 	left: 0;
 	right: 0;
 	top: 0;
-	border-bottom: 1px solid #5d5d5d;
+	border-bottom: 1px solid #b2e6ae;
 	background-color:#31b6e7;
 	color: #ffffff;
 	margin: 5px 10px;
@@ -60,6 +61,13 @@ body {
 	margin-top: -10px;
 }
 .added-timezone-blocks {
+	/*height: 100%;*/
+	/*overflow-y: scroll;
+	overflow-x:hidden;
+	height: auto;*/
+	/*position: fixed;
+	left: 0;
+	right: 0;*/
 	margin-top: 250px;
 	width: auto;
 }
@@ -75,7 +83,7 @@ body {
 	display: block;
 	padding:10px 10px;
 	font-size: 120%;
-	background-color: #31b6e7;
+	background-color: #b2e6ae;
 }
 .current-time {
 	float: right;
@@ -90,7 +98,7 @@ body {
 	font-size: 30px;
 }
 .time-block {
-	font-family: "roboto-r";
+	/*font-family: "roboto-r";*/
 	word-spacing: -4px;
 }
 .footer-bar {
@@ -143,6 +151,10 @@ body {
 }
 .android-ics .dwhl {
 	padding: 1px 0px;
+}
+.android-ics .dw .dwwol {
+	border-top: 2px solid #b2e6ae;
+	border-bottom: 2px solid #b2e6ae;
 }
 .dwwr {
 	min-width: 80px !important;

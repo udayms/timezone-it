@@ -22,18 +22,18 @@ body {
 	margin:0;
 	padding:0px;
 	font-family: "roboto-l";
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 .container {
 	width: auto;
 }
 .added-homecity-block {
 	display: block;
-	/*position: fixed;
+	position: fixed;
 	left: 0;
 	right: 0;
-	top: 0;*/
-	border-bottom: 1px solid #5d5d5d;
+	top: 0;
+	border-bottom: 1px solid #b2e6ae;
 	background-color:#31b6e7;
 	color: #ffffff;
 	margin: 5px 10px;
@@ -62,12 +62,13 @@ body {
 }
 .added-timezone-blocks {
 	/*height: 100%;*/
-	overflow-y: scroll;
+	/*overflow-y: scroll;
 	overflow-x:hidden;
-	height: auto;
-	/*position: absolute;
-
-	top: 250px;*/
+	height: auto;*/
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 250px;
 	width: auto;
 }
 .added-timezone-block {
@@ -82,7 +83,7 @@ body {
 	display: block;
 	padding:10px 10px;
 	font-size: 120%;
-	background-color: #93e2da;
+	background-color: #b2e6ae;
 }
 .current-time {
 	float: right;
@@ -97,7 +98,7 @@ body {
 	font-size: 30px;
 }
 .time-block {
-	font-family: "roboto-r";
+	/*font-family: "roboto-r";*/
 	word-spacing: -4px;
 }
 .footer-bar {
@@ -131,11 +132,11 @@ body {
 .time-selector {
 	background-color: #000000;
 	display: block;
-	/*position: fixed;
-	margin-top: 60px;
+	position: fixed;
+	/*margin-top: 60px;*/
 	top: 55px;
 	left: 0;
-	right: 0;*/
+	right: 0;
 	text-align: center;
 	vertical-align: middle;
 }
@@ -150,6 +151,10 @@ body {
 }
 .android-ics .dwhl {
 	padding: 1px 0px;
+}
+.android-ics .dw .dwwol {
+	border-top: 2px solid #b2e6ae;
+	border-bottom: 2px solid #b2e6ae;
 }
 .dwwr {
 	min-width: 80px !important;

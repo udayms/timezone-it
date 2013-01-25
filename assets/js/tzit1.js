@@ -50,31 +50,22 @@ function tzController($scope) {
 	$scope.slideTime = function(event, ui){
 		var sTime = $("#slider-range").slider("values", 0),
 			eTime = $("#slider-range").slider("values", 1);
-
-		/*var	minutes0 = parseInt(sTime % 60, 10),
-			hours0 = parseInt(sTime / 60 % 24, 10),
-			minutes1 = parseInt(eTime % 60, 10),
-			hours1 = parseInt(eTime / 60 % 24, 10);
-
-			$scope.startTime = $scope.getTime(hours0, minutes0);
-			$scope.endTime = $scope.getTime(hours1, minutes1);
-			$scope.hometime = $scope.startTime + ' - ' + $scope.endTime;
-			
-		*/
 		
-		
-		$scope.$apply(function() {
-			angular.forEach($scope.cities, function(mycity) {
-      			var sm = parseInt(sTime % 60, 10),
+		var sm = parseInt(sTime % 60, 10),
       				sh = parseInt(sTime / 60 % 24, 10),
       				em = parseInt(eTime % 60, 10),
       				eh = parseInt(eTime / 60 % 24, 10);
-      			
+		
+		var hst = new timezoneJS.Date(2013,00,22, sh,sm), 
+			het = new timezoneJS.Date(2013,00,22, eh,em);
+		
+		$scope.$apply(function() {
+			angular.forEach($scope.cities, function(mycity) {
+      			dt = new timezoneJS.Date(hst, mycity.name);
+      			mycity.stime = $scope.getTime(dt.getHours(), dt.getMinutes());
 
-      			dt = new timezoneJS.Date(mycity.name);
-
-      			mycity.stime = $scope.getTime(sh, sm);
-      			mycity.etime = $scope.getTime(eh, em);
+      			dt = new timezoneJS.Date(het, mycity.name);
+      			mycity.etime = $scope.getTime(dt.getHours(), dt.getMinutes());
       			
     		});
 	    });

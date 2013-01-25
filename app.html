@@ -1,0 +1,35 @@
+<html ng-app>
+	<head>
+		<title>Anytime, Anywhere</title>
+		<link rel="stylesheet" href="assets/css/mobiscroll-2.3.1.custom.min.css">
+		<link rel="stylesheet" href="assets/css/style.css">
+	</head>
+	<body ng-controller="tzController">
+		<div class="container">
+			<div class='added-homecity-block'>
+				<div class='city-name'>{{homeCity.city}} <div class="pull-right country-label">India, ASIA</div><br><div class="gmt-label pull-right">GMT + 5:30</div></div>
+			</div>
+			<div class="time-selector">
+				<div name="starttime" id="starttime" class="i-txt"></div>
+				TO
+				<div name="stoptime" id="stoptime" class="i-txt"></div>
+			</div>
+			<div class="clear added-timezone-blocks">
+				<div class="added-timezone-block clear" ng-repeat="myCity in myPlaces">
+					<div class="city-name">{{myCity.city}}<div class="pull-right time-block">{{myCity.stime}} - {{myCity.etime}}</div><div class="clear"></div></div>
+				</div>
+			</div>
+			<div class="footer-bar">
+				<div class="add-city-icon"><b>+</b> Add City</div>
+			</div>
+		</div>		
+		<script type="text/javascript" src="assets/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="assets/js/date.js"></script>
+		<script type="text/javascript" src="assets/js/mobiscroll-2.3.1.custom.min.js"></script>
+		<script type="text/javascript" src="assets/js/angular.min.js"></script>
+
+		<script type="text/javascript" src="assets/js/utils.js"></script>
+		<script type="text/javascript" src="assets/js/ng.js"></script>
+		<script type="text/javascript" src="assets/js/app.js"></script>
+	</body>
+</html>

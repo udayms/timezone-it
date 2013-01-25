@@ -62,8 +62,8 @@ $(document).ready(function(){
     });
 
     $("#add-city").leanModal({overlay : 0.9,closeButton: ".modal_close" });
-    $('#cities-to-add li').each(function() {
+   /* $('#cities-to-add li').each(function() {
     	$(this).prepend('<input type="checkbox" name"city" value="'+$(this).text()+'"/>&nbsp;')
     	$(this).append('<div class="list-gmt-offset pull-right">'+'GMT + 5:30'+'</div>')
-    });
+    });*/
 });

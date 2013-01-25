@@ -9,6 +9,8 @@
 	<script type="text/javascript" src="assets/js/date.js"></script>
 	<script type="text/javascript" src="assets/js/custom.js"></script>
 	<script type="text/javascript" src="assets/js/mobiscroll-2.3.1.custom.min.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.leanModal.min.js"></script>
+	
 </head>
 <body>
 	<div class="container">
@@ -47,8 +49,38 @@
 			</div>
 		</div>
 		<div class="footer-bar">
-			<div class="add-city-icon"><b>+</b> Add City</div>
+			<div  class="add-city-icon"><a id= "add-city" href="#overlay"><b>+</b> Add City</a></div>
 		</div>
+	</div>
+
+	<div id="overlay">
+	     <div class="modal-content">
+	         <div class="modal-title">Select cities to add:</div>
+	         <ul id="cities-to-add">
+	         	<li><input type="checkbox" name="city" value="Asia/Kolkata"> Asia/Kolkata</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+         		<li><input type="checkbox" name="city" value="America/Chicago"> America/Chicago</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+     			<li><input type="checkbox" name="city" value="Asia/Karachi"> Asia/Karachi</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+ 				<li><input type="checkbox" name="city" value="Europe/Berlin"> Europe/Berlin</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+ 				<li><input type="checkbox" name="city" value="America/New_York"> America/New_York</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+ 				<li><input type="checkbox" name="city" value="Asia/Kolkata"> Asia/Kolkata</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+         		<li><input type="checkbox" name="city" value="America/Chicago"> America/Chicago</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+     			<li><input type="checkbox" name="city" value="Asia/Karachi"> Asia/Karachi</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+ 				<li><input type="checkbox" name="city" value="Europe/Berlin"> Europe/Berlin</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+ 				<li><input type="checkbox" name="city" value="America/New_York"> America/New_York</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+ 				<li><input type="checkbox" name="city" value="Asia/Kolkata"> Asia/Kolkata</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+         		<li><input type="checkbox" name="city" value="America/Chicago"> America/Chicago</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+     			<li><input type="checkbox" name="city" value="Asia/Karachi"> Asia/Karachi</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+ 				<li><input type="checkbox" name="city" value="Europe/Berlin"> Europe/Berlin</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+ 				<li><input type="checkbox" name="city" value="America/New_York"> America/New_York</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+ 				<li><input type="checkbox" name="city" value="Asia/Kolkata"> Asia/Kolkata</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+         		<li><input type="checkbox" name="city" value="America/Chicago"> America/Chicago</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+     			<li><input type="checkbox" name="city" value="Asia/Karachi"> Asia/Karachi</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+ 				<li><input type="checkbox" name="city" value="Europe/Berlin"> Europe/Berlin</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+ 				<li><input type="checkbox" name="city" value="America/New_York"> America/New_York</input><div class="list-gmt-offset pull-right"> GMT + 5:30</div></li>
+	         </ul>
+	         <div class="modal-button">Done</div>
+	         <div class="modal-button pull-right">Cancel</div>
+	     </div>
 	</div>
 </body>
 </html>

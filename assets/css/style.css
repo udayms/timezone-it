@@ -22,17 +22,17 @@ body {
 	margin:0;
 	padding:0px;
 	font-family: "roboto-l";
-	/*overflow: hidden;*/
+	overflow: hidden;
 }
 .container {
 	width: auto;
 }
 .added-homecity-block {
 	display: block;
-	position: fixed;
+	/*position: fixed;
 	left: 0;
 	right: 0;
-	top: 0;
+	top: 0;*/
 	border-bottom: 1px solid #b2e6ae;
 	background-color:#31b6e7;
 	color: #ffffff;
@@ -61,15 +61,21 @@ body {
 	margin-top: -10px;
 }
 .added-timezone-blocks {
-	/*height: 100%;*/
-	/*overflow-y: scroll;
+	position:absolute; z-index:1;
+	bottom:200px; top:5px; left:0;
+	width:100%;
+	padding-top: 45px;
+	overflow:auto;
+	/*
+	overflow-y: scroll;
+	padding-bottom:45px; 
 	overflow-x:hidden;
-	height: auto;*/
-	/*position: fixed;
+	height: auto;
+	position: fixed;
 	left: 0;
-	right: 0;*/
+	right: 0;
 	margin-top: 250px;
-	width: auto;
+	width: auto;*/
 }
 .added-timezone-block {
 	margin:5px;
@@ -103,12 +109,14 @@ body {
 }
 .footer-bar {
 	position: fixed;
-	bottom: 0;
+	top: 0;
 	right: 0;
 	left: 0;
 	background: rgba(36,36,36,.7);
 	color: #ffffff;
 	padding: 10px;
+	z-index: 9000;
+	font-size: 120%;
 }
 .AM {
 	background-color: #efefef;
@@ -132,11 +140,10 @@ body {
 .time-selector {
 	background-color: #000000;
 	display: block;
-	position: fixed;
-	/*margin-top: 60px;*/
-	top: 55px;
+	position: absolute;
+	bottom: 0px;
 	left: 0;
-	right: 0;
+	right: 0;*/
 	text-align: center;
 	vertical-align: middle;
 	padding: 0px 50px 0px 50px;
@@ -169,8 +176,10 @@ body {
 	padding: 3px 10px;
 	cursor: pointer;
 	display: inline-block;
+	font-size: 70%;
 }
 .add-city-icon a {
+	font-size: 70%;
 	color: white;
 	text-decoration: none;
 }

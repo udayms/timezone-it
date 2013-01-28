@@ -1,4 +1,12 @@
 var Utils = {
+
+	fireEvent: function(name, target, data) {
+    	$(target).trigger(name, data);
+	},
+
+	echo: function(obj){
+    return JSON.stringify(obj);
+	},
 	
 	addMinutesToCityTime: function(date, minutes, city) {
     	var newt = new timezoneJS.Date(date + minutes * 60000, city);
@@ -9,24 +17,12 @@ var Utils = {
 	},
 
 	getTimeString: function(hours, minutes){
+		/*
 		var time = null;
-
-
-
-
-		if (hours < 12) {
-			time = "a";
-		}else {
-			time = "p";
-		}
-
-		if (hours == 0) {
-			hours = 12;
-		}
-
-		if (hours > 12) {
-			hours = hours - 12;
-		}
+		if (hours < 12) { time = "a"; }else { time = "p"; }
+		if (hours == 0)	hours = 12;		
+		if (hours > 12)	hours = hours - 12;
+		*/
 
 		hours = hours + "";
 		minutes = minutes + "";
@@ -34,7 +30,7 @@ var Utils = {
 		if(hours.length < 2) hours = "0" + hours;
 		if(minutes.length < 2) minutes = "0" + minutes;
 
-		return hours + ":" + minutes + " " + time;
+		return hours + ":" + minutes;
 
 	},
 

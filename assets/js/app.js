@@ -4,12 +4,13 @@ var currentdate = new timezoneJS.Date(),
 	year = currentdate.getYear(),
 	homeoffset = currentdate.getTimezoneOffset();
 
-	var tz = timezoneJS.timezone;
+var tz = timezoneJS.timezone;
 	tz.zoneFileBasePath = 'assets/tz';
-	//tz.loadingScheme = tz.loadingSchemes.MANUAL_LOAD;
-	//tz.loadZoneJSONData('assets/tz/allcities.json', true);
 	tz.init({async: false});
 
+var MYPLACES_FILE_PATH = "/Android/data/AnywhereAnytime/";
+var TIMESELCTOR_MOBISCROLL = "mobi";
+var TIMESELCTOR_SLIDER = "slider";
 
 function tzController($scope) {
 	$scope.homeCity = {};
@@ -25,12 +26,12 @@ function tzController($scope) {
     ];
 
 
-	$scope.init = function(){
-    	$scope.initUi();
-    	$scope.initTimeComponent();
+	var init = function(){
+    	initUi();
+    	initTimeComponent(TIMESELCTOR_MOBISCROLL);
   	};
 
-	$scope.initUi = function(){
+	var initUi = function(){
 	    var dt;
 	    angular.forEach($scope.myPlaces, function(myPlace) {
 	      
@@ -42,34 +43,67 @@ function tzController($scope) {
 	      myPlace.etime = Utils.getTimeString(newt.hours, newt.minutes);
 
 	      if(myPlace.home)
-	        $scope.setHomeCity(myPlace);
+	        setHomeCity(myPlace);
 
 	      console.log(myPlace.city + ": " + myPlace.stime + " - " + myPlace.etime + "[" + dt.getTimezoneOffset() + "]");
 	    });
 	};
 
 
-	$scope.initTimeComponent = function(){
-		$('#starttime').mobiscroll().time({
-			id: "startTime",
-	        theme: 'android-ics', display: 'inline', timeWheels: 'HHii', stepMinute: 5, mode: 'scroller', showLabel: false,
-	        onChange: $scope.onTimeChanged
+	var initTimeComponent = function(component){
+
+		if(component == TIMESELCTOR_MOBISCROLL){
+			initMobiScroll($scope.homeCity.stime, $scope.homeCity.etime);
+		}else if(component == TIMESELCTOR_SLIDER){
+			initTimeRangeSlider();
+		}
+		
+	};
+
+	var initMobiScroll = function(stime, etime){
+			$('#starttime').mobiscroll().time({
+				id: "startTime",
+		        theme: 'android-ics', display: 'inline', timeFormat: 'HH:ii', timeWheels: 'HHii', stepMinute: 5, mode: 'scroller', showLabel: false,
+		        onChange: onTimeChanged
+			});
+
+
+			$('#stoptime').mobiscroll().time({
+				id: "endTime",
+		        theme: 'android-ics', display: 'inline', timeFormat: 'HH:ii', timeWheels: 'HHii', stepMinute: 5, mode: 'scroller', showLabel: false,
+		        onChange: onTimeChanged
+		    });
+
+	};
+
+	var initTimeRangeSlider = function(){
+		$('.time-selector').html('<input id="timeRanger" type="slider" name="price" value="-0.5;0.5" />');
+
+		$('#timeRanger').slider({
+			from: 480,
+			to: 1020,
+			step: 15,
+			skin: "blue",
+			dimension: '',
+			scale: ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+			limits: false,
+			calculate: function( value ){
+				var hours = Math.floor( value / 60 );
+				var mins = ( value - hours*60 );
+				return (hours < 10 ? "0"+hours : hours) + ":" + ( mins == 0 ? "00" : mins );
+			},
+			onstatechange: function( value ){
+				console.dir( this );
+			}
 		});
+	};
 
-
-		$('#stoptime').mobiscroll().time({
-			id: "endTime",
-	        theme: 'android-ics', display: 'inline', timeWheels: 'HHii', stepMinute: 5, mode: 'scroller', showLabel: false,
-	        onChange: $scope.onTimeChanged
-	    });
-	}
-
-	$scope.setHomeCity = function(hc){
+	var setHomeCity = function(hc){
 		$scope.homeCity = hc;
   	};
 
 
-	$scope.onTimeChanged = function(time, inst){
+	var onTimeChanged = function(time, inst){
 		var time = Utils.getTimeFromString(time);
 		var hometime = new timezoneJS.Date(year, month, date, time.hours, time.minutes);
 		var citytime;
@@ -89,10 +123,18 @@ function tzController($scope) {
 			}
 	    });
 		
-			
-	}
+	};
+
+
+	var loadMyPlaces = function(){
+
+	};
+
+	var saveMyPlaces = function(){
+
+	};
 
 
 
-	$scope.init();
+	init();
 }

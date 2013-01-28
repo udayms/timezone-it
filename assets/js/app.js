@@ -40,18 +40,20 @@ function tzController($scope) {
 	    var dt;
 	    angular.forEach($scope.myPlaces, function(myPlace) {
 	      
-	      var place = Utils.getPlace(myPlace.zone, myPlace.city);
-	      dt = new timezoneJS.Date(place);
-	      
-	      myPlace.stime = Utils.getTimeString(dt.getHours(), dt.getMinutes());
-	      var newt = Utils.addMinutesToCityTime(dt.getTime(), 60, place);
-	      myPlace.etime = Utils.getTimeString(newt.hours, newt.minutes);
+			var place = Utils.getPlace(myPlace.zone, myPlace.city);
+			dt = new timezoneJS.Date(place);
 
-	      if(myPlace.home)
-	        setHomeCity(myPlace);
+			myPlace.stime = Utils.getTimeString(dt.getHours(), dt.getMinutes());
+			var newt = Utils.addMinutesToCityTime(dt.getTime(), 60, place);
+			myPlace.etime = Utils.getTimeString(newt.hours, newt.minutes);
 
-	      console.log(myPlace.city + ": " + myPlace.stime + " - " + myPlace.etime + "[" + dt.getTimezoneOffset() + "]");
+			if(myPlace.home)
+				setHomeCity(myPlace);
+
+			console.log(myPlace.city + ": " + myPlace.stime + " - " + myPlace.etime + "[" + dt.getTimezoneOffset() + "]");
 	    });
+		
+		var myScroll = new iScroll('added-timezone-blocks', { scrollbarClass: 'myScrollbar' });
 	};
 
 

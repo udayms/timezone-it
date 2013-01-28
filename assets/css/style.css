@@ -61,16 +61,21 @@ body {
 	margin-top: -10px;
 }
 .added-timezone-blocks {
-	
+	position:absolute; z-index:1;
+	bottom:200px; top:5px; left:0;
+	width:100%;
+	padding-top: 45px;
+	overflow:auto;
+	/*
 	overflow-y: scroll;
 	padding-bottom:45px; 
 	overflow-x:hidden;
-	/*height: auto;
+	height: auto;
 	position: fixed;
 	left: 0;
 	right: 0;
-	margin-top: 250px;*/
-	width: auto;
+	margin-top: 250px;
+	width: auto;*/
 }
 .added-timezone-block {
 	margin:5px;
@@ -104,12 +109,14 @@ body {
 }
 .footer-bar {
 	position: fixed;
-	bottom: 0;
+	top: 0;
 	right: 0;
 	left: 0;
 	background: rgba(36,36,36,.7);
 	color: #ffffff;
 	padding: 10px;
+	z-index: 9000;
+	font-size: 120%;
 }
 .AM {
 	background-color: #efefef;
@@ -133,9 +140,8 @@ body {
 .time-selector {
 	background-color: #000000;
 	display: block;
-	/*position: fixed;
-	margin-top: 60px;
-	top: 55px;
+	position: absolute;
+	bottom: 0px;
 	left: 0;
 	right: 0;*/
 	text-align: center;
@@ -168,8 +174,10 @@ body {
 	padding: 3px 10px;
 	cursor: pointer;
 	display: inline-block;
+	font-size: 70%;
 }
 .add-city-icon a {
+	font-size: 70%;
 	color: white;
 	text-decoration: none;
 }

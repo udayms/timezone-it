@@ -21,6 +21,11 @@ function tzController($scope) {
     	{city:'Honolulu', zone: 'Pacific', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
     	{city:'Tokyo', zone: 'Asia', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
     	{city:'New_York',  zone: 'America', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
+    	{city:'Tijuana', zone: 'America', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
+    	{city:'Los_Angeles', zone: 'America', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
+    	{city:'Honolulu', zone: 'Pacific', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
+    	{city:'Tokyo', zone: 'Asia', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
+    	{city:'New_York',  zone: 'America', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
     	{city:'Tijuana', zone: 'America', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"}
     ];
 

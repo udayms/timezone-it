@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<script type="text/javascript" src="assets/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="assets/js/date.js"></script>
+		<script>
+			timezoneJS.timezone.zoneFileBasePath = 'assets/tz';
+			timezoneJS.timezone.defaultZoneFile = ['asia', 'backward', 'northamerica', 'southamerica', 'europe'];
+			timezoneJS.timezone.init({async: false});
+		</script>
+
+		<!-- <script type="text/javascript" src="assets/js/fleegix.js"></script> -->
+		<script type="text/javascript" src="assets/js/custom-using timezoneinfo.js"></script>
+	</head>
+	<body>
+		Start Hours<input type="text" id="shours" >
+		Start Minutes<input type="text" id="sminutes"><br/>
+		End Hours<input type="text" id="ehours" >
+		End Minutes<input type="text" id="eminutes">
+		<ul class="cities">
+			<li>New York</li>
+			<li>Kolkata</li>
+		</ul>
+	</body>
+</html>

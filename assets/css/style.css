@@ -202,7 +202,7 @@ body {
 }
 .modal-content li {
 	list-style-type: none;
-	padding: 10px 0px;
+	padding: 8px 0px 10px 0px;
 	border-bottom: 1px solid #2d2d2d;
 }
 .modal-content .modal-button {
@@ -213,6 +213,7 @@ body {
 	color: #000;
 	/*border-radius: 2px;*/
 	background-color: white;
+	cursor: pointer;
 }
 .modal-title {
 	border-bottom: 1px solid #5d5d5d;

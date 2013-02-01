@@ -37,6 +37,21 @@ $(document).ready(function(){
 	$("#sminutes").attr("value", currentdate.getMinutes());
 	$("#ehours").attr("value", parseInt($('#shours').attr("value"))+2);
 	$("#eminutes").attr("value", $('#sminutes').attr("value"));
+	$(".added-timezone-blocks").css("height", $(window).height() - 300);
+
+
+
+var myScroll;
+function loaded() {
+	myScroll = new iScroll('added-timezone-blocks', { scrollbarClass: 'myScrollbar' });
+}
+
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+document.addEventListener('DOMContentLoaded', loaded, false);
+
+
+
 
 	timeit(date, month, year, homeoffset);
 

@@ -1,6 +1,7 @@
 var Utils = {
 
 	fireEvent: function(name, target, data) {
+		Log.info("Firing event - " + name);
     	$(target).trigger(name, data);
 	},
 
@@ -55,5 +56,16 @@ var Utils = {
 		return name.replace("_", " ");
 	}
 
+};
+
+var Log = {
+
+    info: function(msg){
+    	console.info('[INFO] ' + msg);
+    },
+
+    error: function(msg, output){
+        console.error('[ERROR] ' + msg, output);
+    }
 
 };

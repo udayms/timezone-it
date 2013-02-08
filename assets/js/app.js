@@ -8,33 +8,35 @@ var tz = timezoneJS.timezone;
 	tz.zoneFileBasePath = 'assets/tz';
 	tz.init({async: false});
 
-var MYPLACES_FILE_PATH = "/Android/data/AnywhereAnytime/";
+var fs = {};
+var fe = {};
+var tfile = {};
+var fmode = "r";
+
+var MYPLACES_FILE_NAME = "myplaces";
+var MYPLACES_FILE_PATH = "/Android/data/timezoneit/";
 var TIMESELCTOR_MOBISCROLL = "mobi";
 var TIMESELCTOR_SLIDER = "slider";
+
 
 function tzController($scope) {
 	$scope.homeCity = {};
 
 	// List of cities added by the user.
-	$scope.myPlaces = [
-      {city:'Kolkata', zone: 'Asia', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00", home: true},
-    	{city:'Los_Angeles', zone: 'America', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
-    	{city:'Honolulu', zone: 'Pacific', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
-    	{city:'Tokyo', zone: 'Asia', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
-    	{city:'New_York',  zone: 'America', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
-    	{city:'Tijuana', zone: 'America', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
-    	{city:'Los_Angeles', zone: 'America', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
-    	{city:'Honolulu', zone: 'Pacific', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
-    	{city:'Tokyo', zone: 'Asia', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
-    	{city:'New_York',  zone: 'America', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
-    	{city:'Tijuana', zone: 'America', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"}
-    ];
+	$scope.myPlaces = [];
 
 
 	var init = function(){
+		document.addEventListener("deviceready", onDeviceReady, false);
+
     	initUi();
     	initTimeComponent(TIMESELCTOR_MOBISCROLL);
   	};
+
+  	var onDeviceReady = function() {
+		Log.info("Device Ready.");
+		initFs();
+	};
 
 	var initUi = function(){
 	    var dt;
@@ -68,6 +70,7 @@ function tzController($scope) {
 	};
 
 	var initMobiScroll = function(stime, etime){
+
 			$('#starttime').mobiscroll().time({
 				id: "startTime",
 		        theme: 'android-ics', display: 'inline', timeFormat: 'HH:ii', timeWheels: 'HHii', stepMinute: 5, mode: 'scroller', showLabel: false,
@@ -111,11 +114,12 @@ function tzController($scope) {
 
 
 	var onTimeChanged = function(time, inst){
+
 		var time = Utils.getTimeFromString(time);
 		var hometime = new timezoneJS.Date(year, month, date, time.hours, time.minutes);
 		var citytime;
 
-		$scope.$apply(function() {
+		$scope.safeApply(function() {
 			
 			if(inst.settings.id == "startTime"){
 				angular.forEach($scope.myPlaces, function(myplace) {
@@ -128,20 +132,88 @@ function tzController($scope) {
 					myplace.etime = Utils.getTimeString(citytime.getHours(), citytime.getMinutes());      			
 	    		});
 			}
+
 	    });
-		
-	};
-
-
-	var loadMyPlaces = function(){
-
-	};
-
-	var saveMyPlaces = function(){
 
 	};
 
 
+	var loadMyPlaces = function(fsys){
+		if($scope.myPlaces && $scope.myPlaces.length < 1){
+			Log.info("Loading MyPlaces...");
+			getFileForReading(fsys, MYPLACES_FILE_NAME);
+		}
+	};
+
+	var initFs = function(){
+		Log.info("Requesting FileSystem access.");  
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fail);
+	};
+
+	var gotFileSystem = function(f){
+		fs = f;
+        Log.info("Got FileSystem access.");
+       	loadMyPlaces(f);
+    };
+    
+    var getFileForReading = function(fs, filename){
+        Log.info("Looking for the file - " + filename + ".");   
+        fs.root.getFile(filename, {create: true}, gotFileForReading, fail);
+    };
+
+    var gotFileForReading = function(fileEntry){
+    	fe = fileEntry;
+        fe.file(readFile, fail);
+    };
+
+    var readFile = function(file){
+    	tfile = file;
+        var reader = new FileReader();
+        reader.onloadend = fileReadComplete;
+        reader.readAsText(file);  
+    };
+
+    var fileReadComplete = function(event){
+    	$scope.safeApply(function() {
+    		$scope.myPlaces = angular.fromJson(event.target.result);
+    	});
+        Log.info(Utils.echo($scope.myPlaces));
+    };
+
+    var writeFile = function(d){
+    	data = d;
+    	fe.createWriter(writeDataToFile, fail);
+    };
+    
+    var writeDataToFile = function(writer){
+        writer.onwrite = function(evt) {
+            Log.info("File Write successful - " + writer.length + " kb.");
+            getFileForReading(fs, MYPLACES_FILE_NAME);
+        };
+        
+        writer.seek((fmode == "r") ? 0 : writer.length)
+                
+        writer.write(data);
+    };
+
+    var fail = function(errorevent){
+    	Log.error(errorevent);
+    };
+    
+    $scope.foo = function() {
+        writeFile(angular.toJson($scope.myPlaces));
+    };
+    
+    $scope.safeApply = function(fn) {
+    	var phase = this.$root.$$phase;
+    	if(phase == '$apply' || phase == '$digest') {
+    		if(fn && (typeof(fn) === 'function')) {
+    			fn();
+    		}
+    	} else {
+    		this.$apply(fn);
+    	}
+    };
 
 	init();
 }

@@ -13,7 +13,7 @@
 			<div id="added-timezone-blocks" class="clear added-timezone-blocks">
 				<div id="scroller">
 					<div class="added-timezone-block clear" ng-repeat="myCity in myPlaces">
-						<div class="city-name">{{myCity.city}}<div class="pull-right time-block">{{myCity.stime}} - {{myCity.etime}}</div><div class="clear"></div></div>
+						<div class="city-name" ng-click="selectHomeCity(item)">{{myCity.city}}<div class="pull-right time-block">{{myCity.stime}} - {{myCity.etime}}</div><div class="clear"></div></div>
 					</div>
 				</div>
 			</div>

@@ -14,9 +14,11 @@ var tfile = {};
 var fmode = "r";
 
 var MYPLACES_FILE_NAME = "myplaces";
-var MYPLACES_FILE_PATH = "/Android/data/timezoneit/";
+var MYPLACES_FILE_PATH = "/Android/data/com.timezoneit";
+var ALLCITIES_FILE = "../tz/allcities"
 var TIMESELCTOR_MOBISCROLL = "mobi";
 var TIMESELCTOR_SLIDER = "slider";
+
 
 
 function tzController($scope) {
@@ -24,6 +26,7 @@ function tzController($scope) {
 
 	// List of cities added by the user.
 	$scope.myPlaces = [];
+	$scope.allPlaces = [];
 
 
 	var init = function(){
@@ -35,6 +38,7 @@ function tzController($scope) {
 
   	var onDeviceReady = function() {
 		Log.info("Device Ready.");
+		//loadAllPlaces();
 		initFs();
 	};
 
@@ -109,9 +113,22 @@ function tzController($scope) {
 	};
 
 	var setHomeCity = function(hc){
+		Log.info("Setting new home city - " + hc.city);
 		$scope.homeCity = hc;
   	};
-
+  	
+  	$scope.selectHomeCity = function(homeCity){
+  		
+  		angular.forEach($scope.myPlaces, function(myPlace) {
+  			if(myPlace.city == homeCity.city){
+  				setHomeCity(homeCity);
+				if(!myPlace.home) myPlace.home = true;
+			}else{
+				if(myPlace.home) delete myPlace.home;
+			}
+  		});
+  		
+  	};
 
 	var onTimeChanged = function(time, inst){
 
@@ -136,7 +153,13 @@ function tzController($scope) {
 	    });
 
 	};
-
+	
+	var loadAllPlaces = function(){
+		$.getJSON(ALLCITIES_FILE, function(data){
+			Log.info("ALL CITIES READ FROM FILE ======>>> " + data);
+			$scope.allPlaces = angular.fromJson(data);
+		});
+	};
 
 	var loadMyPlaces = function(fsys){
 		if($scope.myPlaces && $scope.myPlaces.length < 1){
@@ -147,12 +170,19 @@ function tzController($scope) {
 
 	var initFs = function(){
 		Log.info("Requesting FileSystem access.");  
+		// window.resolveLocalFileSystemURI(MYPLACES_FILE_PATH, function(dirEntry) {
+		// 	window.requestFileSystem(dirEntry, 0, gotFileSystem, fail);
+  //     		myRoot = dirEntry;
+  //   	});
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fail);
+        //MYPLACES_FILE_PATH
 	};
 
 	var gotFileSystem = function(f){
 		fs = f;
         Log.info("Got FileSystem access.");
+        console.log("fs name ===================> " + f.name);
+        console.log("fs root ===================> " + f.root);
        	loadMyPlaces(f);
     };
     
@@ -162,6 +192,7 @@ function tzController($scope) {
     };
 
     var gotFileForReading = function(fileEntry){
+    	Log.info("Got the file - " + fileEntry.fullPath + ".");
     	fe = fileEntry;
         fe.file(readFile, fail);
     };
@@ -174,10 +205,21 @@ function tzController($scope) {
     };
 
     var fileReadComplete = function(event){
-    	$scope.safeApply(function() {
-    		$scope.myPlaces = angular.fromJson(event.target.result);
-    	});
-        Log.info(Utils.echo($scope.myPlaces));
+    	Log.info(Utils.echo(event.target));
+    	if(event.target.result == "null" ||  event.target.result == ""){
+    		Log.info("Writing data to file as empty file found.");
+    		writeFile([
+    		           {city:'Kolkata', zone: 'Asia', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00", home: true},
+    		           {city:'Los_Angeles', zone: 'America', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"},
+    		           {city:'Honolulu', zone: 'Pacific', stime: "0:00", etime: "0:00", slot: "0:00 - 0:00"}
+    		       ]);
+    	}else{
+    		$scope.safeApply(function() {
+    			Log.info("Updating myPlaces...");
+        		$scope.myPlaces = angular.fromJson(event.target.result);
+        		Log.info("Updated - " + $scope.myPlaces);
+        	});
+    	}
     };
 
     var writeFile = function(d){
@@ -197,11 +239,11 @@ function tzController($scope) {
     };
 
     var fail = function(errorevent){
-    	Log.error(errorevent);
+    	Log.error(Utils.echo(errorevent));
     };
     
     $scope.foo = function() {
-        writeFile(angular.toJson($scope.myPlaces));
+		writeFile(angular.toJson($scope.myPlaces));
     };
     
     $scope.safeApply = function(fn) {
